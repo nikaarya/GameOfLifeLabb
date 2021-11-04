@@ -27,7 +27,7 @@ public class GameOfLifeTest {
     }
    @Test
     public void LiveCellLessThanTwoLiveNeighborsDies() {
-        CellState currentState = CellState.isAlive; //??
+        CellState currentState = CellState.isAlive;
         int aliveNeighbors = 1;
 
         CellState result = GameRules.NewCellState(currentState, aliveNeighbors);
