@@ -6,55 +6,37 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class GameOfLifeTest {
-    public enum CellState {
-        isAlive,
-        isDead,
-    }
-    public class GameRules {
-        public static CellState NewCellState(CellState currentState, int aliveNeighbors) {
 
-            if (currentState == CellState.isAlive && aliveNeighbors < 2) {
-                return CellState.isDead;
-            }
-            if (currentState == CellState.isAlive && aliveNeighbors > 3) {
-                return CellState.isDead;
-            }
-            if (currentState == CellState.isDead && aliveNeighbors == 3) {
-                return CellState.isAlive;
-            }
-            return currentState;
-        }
-    }
    @Test
     public void LiveCellLessThanTwoLiveNeighborsDies() {
-        CellState currentState = CellState.isAlive;
+        GameOfLife.CellState currentState = GameOfLife.CellState.isAlive;
         int aliveNeighbors = 1;
 
-        CellState result = GameRules.NewCellState(currentState, aliveNeighbors);
-        assertEquals(CellState.isDead, result);
+        GameOfLife.CellState result = GameOfLife.GameRules.NewCellState(currentState, aliveNeighbors);
+        assertEquals(GameOfLife.CellState.isDead, result);
     }
     @Test
     public void LiveCellTwoOrThreeLiveNeighborsLives() {
-        CellState currentState = CellState.isAlive;
+        GameOfLife.CellState currentState = GameOfLife.CellState.isAlive;
         int aliveNeighbors = 3;
 
-        CellState result = GameRules.NewCellState(currentState, aliveNeighbors);
-        assertEquals(CellState.isAlive, result);
+        GameOfLife.CellState result = GameOfLife.GameRules.NewCellState(currentState, aliveNeighbors);
+        assertEquals(GameOfLife.CellState.isAlive, result);
     }
     @Test
     public void LiveCellMoreThanThreeNeighborsDies() {
-        CellState currentState = CellState.isAlive;
+        GameOfLife.CellState currentState = GameOfLife.CellState.isAlive;
         int aliveNeighbors = 4;
 
-        CellState result = GameRules.NewCellState(currentState, aliveNeighbors);
-        assertEquals(CellState.isDead, result);
+        GameOfLife.CellState result = GameOfLife.GameRules.NewCellState(currentState, aliveNeighbors);
+        assertEquals(GameOfLife.CellState.isDead, result);
     }
     @Test
     public void DeadCellWithExactlyThreeLiveNeighborsLives() {
-        CellState currentState = CellState.isDead;
+        GameOfLife.CellState currentState = GameOfLife.CellState.isDead;
         int aliveNeighbors = 3;
 
-        CellState result = GameRules.NewCellState(currentState, aliveNeighbors);
-        assertEquals(CellState.isAlive, result);
+        GameOfLife.CellState result = GameOfLife.GameRules.NewCellState(currentState, aliveNeighbors);
+        assertEquals(GameOfLife.CellState.isAlive, result);
     }
 }
